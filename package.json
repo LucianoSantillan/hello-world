@@ -3,9 +3,15 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "bin": {
+    "tg": "./index.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Luciano Santillan Antonio",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "file-system": "^2.2.2"
+  }
 }
