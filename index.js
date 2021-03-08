@@ -7,6 +7,7 @@ const { generarStoreClassFile } = require('./StoreFileGenerator.js')
 const Console = require('./utils/Console.js')
 const {capitalizeFirstLetter} = require('./utils/StringUtils.js')
 const fs = require('fs')
+const { generarIndexJsFile } = require('./indexJsFileGenerator.js')
 
 const rootPath = 'src/scenes'
 
@@ -24,4 +25,5 @@ Console.read("data", (data) => {
     generarSceneClassFile(sceneName, rootPath)
     generarScssClassFile(sceneName, rootPath)
     generarStoreClassFile(sceneName, rootPath)
+    generarIndexJsFile(sceneName, rootPath)
 })

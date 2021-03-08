@@ -18,7 +18,8 @@ class ##upperNameStore extends AsyncStore {
           // observables
           // actions
         })
-      }
+    }
+}
 
 export default ##upperNameStore
            `;
