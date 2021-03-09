@@ -2,6 +2,7 @@ const {lowerFirstLetter, replaceAll} = require('./utils/StringUtils.js')
 const fs = require('fs')
 
 let sceneClassFile =  `import { useState } from 'react'
+import { observer } from 'mobx-react'
 // import { useTranslation } from 'react-i18next'
 import ##upperNameStore from './##upperNameStore'
 // import styles from './##lowerName.module.scss'
@@ -14,7 +15,7 @@ const ##upperName = () => {
   )
 }
 
-export default ##upperName
+export default observer(##upperName)
     `;
 
 function generarSceneClassFile(sceneName, rootPath) {  
