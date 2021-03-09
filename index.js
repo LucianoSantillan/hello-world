@@ -1,5 +1,4 @@
-#!/usr/bin / env node
-
+#!/usr/bin/env node
 // index.js
 
 const { generarSceneClassFile } = require('./SceneClassFileGenerator.js')
@@ -9,6 +8,8 @@ const Console = require('./utils/Console.js')
 const { capitalizeFirstLetter } = require('./utils/StringUtils.js')
 const fs = require('fs')
 const { generarIndexJsFile } = require('./indexJsFileGenerator.js')
+
+const rootPath = 'src/scenes'
 
 const args = process.argv.slice(2)[0]
 
