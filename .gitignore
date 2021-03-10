@@ -1,3 +1,5 @@
 node_modules/
 *.tgz
 src/scenes
+prueba.js
+pendientes.txt
