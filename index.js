@@ -9,51 +9,34 @@ const { capitalizeFirstLetter } = require('./utils/StringUtils.js')
 const fs = require('fs')
 const { generarIndexJsFile } = require('./indexJsFileGenerator.js')
 const { generarSubSceneClassFile } = require('./SubsceneFileGenerator.js')
-
-const rootPath = 'src/scenes'
+const { createScene } = require('./SceneCreator.js')
+const { createSubScene } = require('./SubSceneCreator.js')
+const { rootPath } = require('./constants.js')
 
 const args = process.argv.slice(2)
-
-let sceneName = capitalizeFirstLetter(args[0].toString().trim());
 
 if (!fs.existsSync(rootPath)) {
     Console.write(`Error: Para poder crear la scena, la ruta ${rootPath} debe existir`)
     return;
 }
 
-if (crearEscena()) {
-    if (fs.existsSync(`${rootPath}/${sceneName}`)) {
-        Console.write("Error: Este nombre de escena ya existe");
-        return;
+const firstParam = args[0].toString().trim()
+if (firstParam) {
+    if (firstParam === 's') {
+        let sceneName = capitalizeFirstLetter(args[1].toString().trim());
+        createScene(sceneName);
     }
-    fs.mkdirSync(`${rootPath}/${sceneName}`)
-    generarSceneClassFile(sceneName, rootPath)
-    generarScssClassFile(sceneName, null, rootPath)
-    generarStoreClassFile(sceneName, rootPath)
-    // generarIndexJsFile(sceneName, rootPath)
-}
-
-if (crearSubcomponenteDeEscena()) {
-    if (!fs.existsSync(`${rootPath}/${sceneName}`)) {
-        Console.write("Error: Este nombre de escena no existe");
-        return;
+    else if (firstParam === 'ss') {
+        let sceneName = capitalizeFirstLetter(args[1].toString().trim());
+        let subComponent = capitalizeFirstLetter(args[2].toString().trim());
+        createSubScene(sceneName, subComponent);
     }
-    let subComponent = capitalizeFirstLetter(args[1].toString().trim());
-    if (fs.existsSync(`${rootPath}/${sceneName}/${subComponent}`)) {
-        Console.write("Error: Este nombre del subcomponente ya existe");
-        return;
+    else if (firstParam === 'abm') { 
+        Console.write("ABM section :)")
     }
-    fs.mkdirSync(`${rootPath}/${sceneName}/${subComponent}`)
-    generarScssClassFile(sceneName, subComponent, rootPath)
-    generarIndexJsFile(subComponent, sceneName, rootPath)
-    generarSubSceneClassFile(sceneName, subComponent, rootPath)
-}
+    else {
+        Console.write("Error: Incorrect params. Pay atention!")
+    }
 
-function crearEscena() {
-    return args.length === 1
-}
-
-function crearSubcomponenteDeEscena() {
-    return args.length === 2
 }
 
